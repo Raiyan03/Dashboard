@@ -1,0 +1,56 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    z-index: 1;
+    background: linear-gradient(to top, #182237, #253352);
+}
+
+.title{
+    font-size: 1rem;
+    color : var(--text);
+}
+
+.time{
+    font-size: 1rem;
+    color : var(--textSoft);
+}
+
+.description{
+    font-size: 1rem;
+    color : var(--textSoft)
+}
+
+.bgContainer{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: 0.3;
+    height: 50%;
+    width: 50%;
+    z-index: -1;
+}
+
+.bg{
+    object-fit: contain;
+}
+.button{
+    color: white;
+    background-color: #5d57c9;
+    border: none;
+    gap: 0.5em;
+    display: flex;
+    padding: 0.5rem;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
