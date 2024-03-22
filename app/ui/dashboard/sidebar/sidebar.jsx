@@ -10,7 +10,8 @@ import {
   MdAnalytics, 
   MdPeople, 
   MdOutlineSettings, 
-  MdHelpCenter 
+  MdHelpCenter,
+  MdLogout
 } from "react-icons/md";
 import Image from 'next/image';
 
@@ -103,6 +104,10 @@ export default function Sidebar() {
           ))
         }
       </ul>
+      <button className={styles.logout}>
+          <MdLogout size={20} />
+          <span>Logout</span>
+      </button>
     </div>
   )
 }
