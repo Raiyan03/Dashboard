@@ -1,0 +1,50 @@
+.container{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-soft);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+
+
+.user{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.image{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.actionBtn{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.button{
+    border: none;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.view{
+    background-color: teal;
+}
+
+.delete{
+    background-color: crimson;
+}
+
+.table{
+    width: 100%;
+}
+
+.cell{
+    padding: 0.5rem;
+}
+

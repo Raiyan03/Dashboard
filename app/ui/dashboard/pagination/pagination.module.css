@@ -1,0 +1,19 @@
+.lowerBar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.prevBtn{
+    background-color: gray;
+    border: none;
+    color : white;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.nextBtn{
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    border: none;
+}
