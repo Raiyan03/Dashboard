@@ -1,12 +1,17 @@
+import { fetchUsers } from "@/app/lib/data";
 import styles from './page.module.css';
 import Image from 'next/image';
 import Search from '../../ui/dashboard/search/search';
 import Pagination from '../../ui/dashboard/pagination/pagination';
-
-const Users = () => {
+import Link from 'next/link';
+const Users = async ({ searchParams }) => {
+    const q = searchParams?.q || "";
+    const page = searchParams?.page || 1;
+    const {users, count} = await fetchUsers(q, page);
+    console.log(users);
     return (
         <div className={styles.container}>
-            <Search placeholder={"Search for user"} />
+            <Search placeholder={"Search for user"} location={'users'} />
             <table className={styles.table}>
                 <thead>
                     <tr className={styles.row}>
@@ -28,99 +33,49 @@ const Users = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className={styles.row}>
-                        <td className={styles.cell}>
-                            <div className={styles.user}>
-                                <Image className={styles.image} src="/noavatar.png" width={50} height={50} alt='User' />
-                                <span>Hello</span>
-                            </div>
-                        </td>
-                        <td className={styles.cell}>
-                            hello@gmail.com
-                        </td>
-                        <td className={styles.cell}>
-                            2021-01-01
-                        </td>
-                        <td className={styles.cell}>
-                            client
-                        </td>
-                        <td className={styles.cell}>
-                            passive
-                        </td>
-                        <td className={styles.cell}>
-                            <div className={styles.actionBtn}>
-                                <button className={`${styles.view} ${styles.button}`}>
-                                    View
-                                </button>
-                                <button className={`${styles.delete} ${styles.button}`}>
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className={styles.row}>
-                        <td className={styles.cell}>
-                            <div className={styles.user}>
-                                <Image className={styles.image} src="/noavatar.png" width={50} height={50} alt='User' />
-                                <span>John</span>
-                            </div>
-                        </td>
-                        <td className={styles.cell}>
-                            John@gmail.com
-                        </td>
-                        <td className={styles.cell}>
-                            2021-01-01
-                        </td>
-                        <td className={styles.cell}>
-                            client
-                        </td>
-                        <td className={styles.cell}>
-                            passive
-                        </td>
-                        <td className={styles.cell}>
-                            <div className={styles.actionBtn}>
-                                <button className={`${styles.view} ${styles.button}`}>
-                                    View
-                                </button>
-                                <button className={`${styles.delete} ${styles.button}`}>
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr className={styles.row}>
-                        <td className={styles.cell}>
-                            <div className={styles.user}>
-                                <Image className={styles.image} src="/noavatar.png" width={50} height={50} alt='User' />
-                                <span>Jane</span>
-                            </div>
-                        </td>
-                        <td className={styles.cell}>
-                            Jane@gmail.com
-                        </td>
-                        <td className={styles.cell}>
-                            2021-01-01
-                        </td>
-                        <td className={styles.cell}>
-                            client
-                        </td>
-                        <td className={styles.cell}>
-                            active
-                        </td>
-                        <td className={styles.cell}>
-                            <div className={styles.actionBtn}>
-                                <button className={`${styles.view} ${styles.button}`}>
-                                    View
-                                </button>
-                                <button className={`${styles.delete} ${styles.button}`}>
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    {users.map((user) => (
+                        <tr className={styles.row} key={user.id}>
+                            <td className={styles.cell}>
+                                <div className={styles.user}>
+                                    <Image 
+                                    className={styles.image} 
+                                    src={ user.img || "/noavatar.png"} 
+                                    width={50}
+                                    height={50} 
+                                    alt='User' 
+                                    />
+                                    <span>{user.username}</span>
+                                </div>
+                            </td>
+                            <td className={styles.cell}>
+                                {user.email}
+                            </td>
+                            <td className={styles.cell}>
+                                {user.createdAt}
+                            </td>
+                            <td className={styles.cell}>
+                                {user.isAdmin ? "Admin" : "Client"}
+                            </td>
+                            <td className={styles.cell}>
+                                {user.isActive ? "Acitve" : "Passive"}
+                            </td>
+                            <td className={styles.cell}>
+                                <div className={styles.actionBtn}>
+                                    <Link href={`/dashboard/users/${user.id}`}>
+                                        <button className={`${styles.view} ${styles.button}`}>
+                                            View
+                                        </button>
+                                    </Link>
+                                    <button className={`${styles.delete} ${styles.button}`}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-            <Pagination />
+            <Pagination total = {count}/>
         </div>
 
     )

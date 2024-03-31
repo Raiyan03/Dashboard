@@ -1,34 +1,15 @@
+import styles from '@/app/ui/login/login.module.css'
+
+
 export default function Login() {
   return (
-    <>
-    <main className="login-page">
-        <div className="login-container">
-            <h2>
-                Login
-            </h2>
-            <form>
-                <div className="login-field">
-                    <label>
-                        Username
-                    </label>
-                    <br />
-                    <input type="text" />
-                </div>
-                <div className="login-field">
-                    <label>
-                        Password
-                    </label>
-                    <br />
-                    <input type="password" />
-                </div>
-                <div>
-                    <button className="login-button" type="submit">
-                        Login
-                    </button>
-                </div>
-            </form>
-        </div>
-    </main>
-    </>
+    <div className={styles.container}>
+        <form action="" className={styles.form}>
+            <h1>Login</h1>
+            <input type="text" placeholder='username' />
+            <input type="password" placeholder='password' />
+            <button className={styles.button} type='submit'>Login</button>
+        </form>
+    </div>
   )
 }
